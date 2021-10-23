@@ -1,4 +1,6 @@
-// const Chart = require('chart.js')
+const RED_COLOR = 'rgb(255, 43, 36)'
+const GREEN_COLOR = 'rgb(6, 214, 160)'
+const PURPLE_COLOR = 'rgb(228, 73, 222)'
 
 function createCourseComponents(courses) {
     for (var i = 0; i < courses.length; i++) {
@@ -9,46 +11,86 @@ function createCourseComponents(courses) {
 
         const course = courses[i]
 
-        // Create course title & left-hand body of course component (student progress info)
-        for (const key in course) {
-            const value = course[key]
+        // Create course title
+        var nameRow = document.createElement("DIV")
+        nameRow.classList.add("row")
+
+        var div = document.createElement("DIV")
+        div.classList.add("title-text")
+        div.innerHTML = course["name"]
+        nameRow.appendChild(div)
+        component.appendChild(nameRow)
+
+        // Create left-hand body of course component (student progress info)
+        var contentRow = document.createElement("DIV")
+        contentRow.classList.add("row")
+
+        var textColumn = document.createElement("DIV")
+        textColumn.classList.add("col")
+        const keys = ["on_track", "behind", "ahead"]
+        for (var j = 0; j < 3; j++) {
+            const key = keys[j]
             var div = document.createElement("DIV")
 
-            if (key == "name") {
-                div.classList.add("title-text")
-                div.innerHTML = value
-            } else {
-                div.classList.add("status-row")
-                div.innerHTML = String(value)
-    
-                switch (key) {
-                    case "on_track":
-                        div.innerHTML += " students on track"
-                        break
-                    case "ahead":
-                        div.innerHTML += " students ahead"
-                        break
-                    case "behind":
-                        div.innerHTML += " students behind"
-                        break
-                    default:
-                        console.log("Poorly formed course dict")
-                        break
-                }
+            div.classList.add("status-row")
+            div.innerHTML = String(course[key])
+
+            switch (key) {
+                case "on_track":
+                    div.innerHTML += " students on track"
+                    break
+                case "ahead":
+                    div.innerHTML += " students ahead"
+                    break
+                case "behind":
+                    div.innerHTML += " students behind"
+                    break
+                default:
+                    console.log("Poorly formed course dict")
+                    break
             }
 
-            component.appendChild(div)
+            textColumn.appendChild(div)
         }
 
         // Create & add button
         var openCourseButton = document.createElement("BUTTON")
-        openCourseButton.setAttribute("class", "btn btn-primary")
+        openCourseButton.classList.add("row")
+        openCourseButton.classList.add("btn")
+        openCourseButton.classList.add("btn-primary")
+        // openCourseButton.setAttribute("class", "btn btn-primary")
         openCourseButton.setAttribute("style", "margin:10px")
         openCourseButton.onclick = function() { openCourse() }
         openCourseButton.innerHTML = "Open Course"
-        component.appendChild(openCourseButton)
+        textColumn.appendChild(openCourseButton)
+
+        contentRow.appendChild(textColumn)
+
+        // Set up space for chart
+        var chartColumn = document.createElement("DIV")
+        chartColumn.classList.add("col")
+        var canvas = document.createElement("CANVAS")
+        // if you resize your window things get fucked up and i don't know how to fix it
+        // canvas.setAttribute("height", "300")
+        // canvas.setAttribute("width", "260")
+        chartColumn.appendChild(canvas)
+        contentRow.appendChild(chartColumn)
+
+        component.appendChild(contentRow)
 
         document.getElementById("component-area").appendChild(component)
+
+        // Add chart
+        addChart({
+            labels: ['On Track', 'Behind', 'Ahead'],
+            datasets: [
+            {
+                label: 'None',
+                data: [course["on_track"], course["behind"], course["ahead"]],
+                backgroundColor: [GREEN_COLOR, RED_COLOR, PURPLE_COLOR],
+            }
+            ]
+        }, canvas)
     }
 }
 
@@ -56,39 +98,29 @@ function openCourse(courseReference) {
     return null
 }
 
-function addChart(courseData) {
-    const DATA_COUNT = 3;
-    const NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
-
-    const data = {
-        labels: ['Green', 'Red', 'Blue'],
-        datasets: [
+function addChart(courseData, context) {
+    new Chart(
+        context,
         {
-            label: 'None',
-            data: Utils.numbers(NUMBER_CFG),
-            backgroundColor: Object.values(Utils.CHART_COLORS),
-        }
-        ]
-    }
-
-    const config = {
-        type: 'doughnut',
-        data: data,
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: 'top',
+            type: 'doughnut',
+            data: courseData,
+            options: {
+              responsive: true,
+              plugins: {
+                legend: {
+                  position: 'bottom',
+                },
+                title: {
+                  display: true,
+                  text: 'Student progress'
+                }
+              },
+              layout: {
+                  padding: 0
+              }
             },
-            title: {
-              display: true,
-              text: 'Chart.js Doughnut Chart'
-            }
-          }
-        },
-    }
-
-    
+        }
+    )
 }
 
 window.onload += function() {
@@ -131,6 +163,4 @@ window.onload += function() {
 
     componentArea = document.getElementById("row align-items-start")
     createCourseComponents(c)
-
-    const myChart = new Chart()
 }()
