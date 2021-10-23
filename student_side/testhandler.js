@@ -1,15 +1,43 @@
 //the variable testdata["questions"] has test questions
 //this stuff all happens in the div with id test-area
-
-qdataexample = {
+currentQuestionData = {
 	"qnumber":"1",
 	"qmax":"25",
 	"prompt":"sneeds feed and seed or chucks feed and seed?",
 	"options":["sneeds","chucks"],
-	"correct":0
+	"correct":0,
+	"associatedknowledge":["sneed","chuck"]
 }
-function getCurrentQuestionData() {
-	return qdataexample;
+
+questionDataList = [
+	{
+		"prompt":"sneeds feed and seed or chucks feed and seed?",
+		"options":["sneeds","chucks"],
+		"correct":0,
+		"associatedknowledge":["sneed","chuck"]
+	},
+	{
+		"prompt":"question 2"
+		"options":["sneeds","chucks"],
+		"correct":1,
+		"associatedknowledge":["sneed","chuck"]
+	},
+	{
+		"prompt":"question 3",
+		"options":["sneeds","chucks"],
+		"correct":0,
+		"associatedknowledge":["sneed","chuck"]
+	}
+]
+currentQuestionNumber = 0;
+
+//updates currentQuestionData and clears screen
+function startNewQuestion() {
+	currentQuestionNumber += 1;
+	currentQuestionData = questionDataList[currentQuestionNumber];
+	currentQuestionData["qnumber"] = String(currentQuestionNumber+1);
+	currentQuestionData["qmax"] = String(questionDataList.length);
+	addQuestion(currentQuestionData);
 }
 
 testarea = document.getElementById("test-area");
@@ -43,7 +71,7 @@ function addQuestion(questionData) {
 	testarea.appendChild(qdivsubmit);
 }
 
-addQuestion(getCurrentQuestionData());
+addQuestion(currentQuestionData);
 
 function clearQuestionArea() {
 	testarea.innerHTML = "";
@@ -54,14 +82,33 @@ function submitAnswer(questionData) {
 	var checked_ans = document.querySelector(checkkey);
 
 	if(checked_ans != null){  //Test if something was checked
-		if (String(checked_ans.value) == "qopt" + String(getCurrentQuestionData()["correct"])) {
+		if (String(checked_ans.value) == "qopt" + String(currentQuestionData["correct"])) {
 			//user is correct
-			alert("Good job");
+			answerCorrect(currentQuestionData);
+
 		} else {
 			//user is wrong
-			alert("Wrong");
+			answerWrong(currentQuestionData);
 		}
 	} else {
 	alert('Nothing checked'); //Alert, nothing was checked.
 	}
 }
+
+function answerWrong(questionData) {
+	var wrongtext = document.createElement("DIV");
+	wrongtext.setAttribute("style","color='red'");
+	var corans = questionData["options"][parseInt(questionData["correct"])];
+	wrongtext.innerHTML = "Incorrect. Correct answer is '" + corans + "'.";
+	testarea.appendChild(wrongtext);
+	setTimeout(startNewQuestion, 3000);
+}
+
+function answerCorrect(questionData) {
+	var correcttext = document.createElement("DIV");
+	correcttext.setAttribute("style","color='green'");
+	correcttext.innerHTML = "Correct!";
+	testarea.appendChild(correcttext);
+	setTimeout(startNewQuestion, 3000);
+}
+
