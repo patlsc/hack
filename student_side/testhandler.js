@@ -8,10 +8,35 @@ currentQuestionData = {
 	"correct":0,
 	"associatedknowledge":["sneed","chuck"]
 }
+
+questionDataList = [
+	{
+		"prompt":"sneeds feed and seed or chucks feed and seed?",
+		"options":["sneeds","chucks"],
+		"correct":0,
+		"associatedknowledge":["sneed","chuck"]
+	},
+	{
+		"prompt":"question 2"
+		"options":["sneeds","chucks"],
+		"correct":1,
+		"associatedknowledge":["sneed","chuck"]
+	},
+	{
+		"prompt":"question 3",
+		"options":["sneeds","chucks"],
+		"correct":0,
+		"associatedknowledge":["sneed","chuck"]
+	}
+]
+currentQuestionNumber = 0;
+
 //updates currentQuestionData and clears screen
 function startNewQuestion() {
-	currentQuestionData = currentQuestionData;
-	clearQuestionArea();
+	currentQuestionNumber += 1;
+	currentQuestionData = questionDataList[currentQuestionNumber];
+	currentQuestionData["qnumber"] = String(currentQuestionNumber+1);
+	currentQuestionData["qmax"] = String(questionDataList.length);
 	addQuestion(currentQuestionData);
 }
 
@@ -86,3 +111,4 @@ function answerCorrect(questionData) {
 	testarea.appendChild(correcttext);
 	setTimeout(startNewQuestion, 3000);
 }
+
