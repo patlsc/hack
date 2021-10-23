@@ -1,38 +1,45 @@
 //the variable testdata["questions"] has test questions
 //this stuff all happens in the div with id test-area
-function loadTest() {
+
 testarea = document.getElementById("test-area");
 for (var i = 0; i < testdata["questions"].length; i++) {
 	console.log("adding question")
 	var qdiv = document.createElement("DIV");
-	console.log(testdata["questions"][i]["options"]);
-	for (var k = 0; k < testdata["questions"][i]["options"]; k++) {
+	var qprompt = document.createElement("P");
+	qdiv.appendChild(qprompt);
+	qprompt.innerHTML = testdata["questions"][i]["prompt"];
+	for (var k = 0; k < testdata["questions"][i]["options"].length; k++) {
+		var qoptdiv = document.createElement("DIV");
 		var qopt = document.createElement("INPUT");
 		qopt.setAttribute("type","radio");
 		qopt.setAttribute("name","q"+String(i));
 		//get answer made via checking value and converting to int
 		qopt.setAttribute("value",String(k));
-		qopt.innerHTML = testdata["questions"][i]["options"][k];
+		qtext = document.createElement("SPAN");
+		qtext.innerHTML = testdata["questions"][i]["options"][k];
+		qoptdiv.appendChild(qopt);
+		qoptdiv.appendChild(qtext);
+		qdiv.appendChild(qoptdiv);
 		console.log(qopt);
-		qdiv.appendChild(qopt);
+		console.log(qtext);
+		console.log(qdiv);
 	}
-	testarea.appendChild(qdiv);
+	console.log(i);
+	var qdivsubmit = document.createElement("BUTTON");
+	qdivsubmit.onclick = function(){submitAnswer("q"+String(i));};
+	qdivsubmit.innerHTML = "Submit";
+	qdiv.appendChild(qdivsubmit);
+	document.getElementById("test-area").appendChild(qdiv);
 }
 
-var node = document.createElement("LI");                 // Create a <li> node
-var textnode = document.createTextNode("Water");         // Create a text node
-node.appendChild(textnode);                              // Append the text to <li>
-document.getElementById("test-area").appendChild(node);     // Append <li> to <ul> with id="myList"
-		var qopt = document.createElement("INPUT");
-		qopt.setAttribute("type","radio");
-		qopt.setAttribute("name","sneed");
-		//get answer made via checking value and converting to int
-		qopt.setAttribute("value","Sneed");
-		document.getElementById("test-area").appendChild(qopt);
+function submitAnswer(strname) {
+	console.log(strname);
+	var checkkey = 'input[name = "'+strname+'"]:checked';
+	var checked_ans = document.querySelector(checkkey);
 
-}
-loadTest();
-
-function checkTest() {
-
+	if(checked_ans != null){  //Test if something was checked
+	alert(checked_ans.value); //Alert the value of the checked.
+	} else {
+	alert('Nothing checked'); //Alert, nothing was checked.
+	}
 }
