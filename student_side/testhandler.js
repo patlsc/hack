@@ -1,14 +1,5 @@
 //the variable testdata["questions"] has test questions
 //this stuff all happens in the div with id test-area
-currentQuestionData = {
-	"qnumber":"1",
-	"qmax":"25",
-	"prompt":"sneeds feed and seed or chucks feed and seed?",
-	"options":["sneeds","chucks"],
-	"correct":0,
-	"associatedknowledge":["sneed","chuck"]
-}
-
 questionDataList = [
 	{
 		"prompt":"sneeds feed and seed or chucks feed and seed?",
@@ -29,6 +20,9 @@ questionDataList = [
 		"associatedknowledge":["sneed","chuck"]
 	}
 ]
+currentQuestionData = questionDataList[0];
+currentQuestionData["qnumber"] = 1;
+currentQuestionData["qmax"] = String(questionDataList.length);
 currentQuestionNumber = 0;
 
 //updates currentQuestionData and clears screen
@@ -37,6 +31,7 @@ function startNewQuestion() {
 	currentQuestionData = questionDataList[currentQuestionNumber];
 	currentQuestionData["qnumber"] = String(currentQuestionNumber+1);
 	currentQuestionData["qmax"] = String(questionDataList.length);
+	clearQuestionArea();
 	addQuestion(currentQuestionData);
 }
 
