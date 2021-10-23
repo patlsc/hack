@@ -54,15 +54,18 @@ function createCourseComponents(courses) {
         }
 
         // Create & add button
+        var a = document.createElement("A")
         var openCourseButton = document.createElement("BUTTON")
         openCourseButton.classList.add("row")
         openCourseButton.classList.add("btn")
         openCourseButton.classList.add("btn-primary")
         // openCourseButton.setAttribute("class", "btn btn-primary")
         openCourseButton.setAttribute("style", "margin:10px")
+        a.setAttribute("href", "courses/" + String(course["id"]) + ".html")
         openCourseButton.onclick = function() { openCourse() }
         openCourseButton.innerHTML = "Open Course"
-        textColumn.appendChild(openCourseButton)
+        a.appendChild(openCourseButton)
+        textColumn.appendChild(a)
 
         contentRow.appendChild(textColumn)
 
@@ -133,31 +136,36 @@ window.onload += function() {
             "name" : "Math I - 2nd block",
             "on_track" : 26,
             "behind" : 8,
-            "ahead" : 5
+            "ahead" : 5,
+            "id" : 1
         },
         {
             "name" : "Math II - 4th block",
             "on_track" : 18,
             "behind" : 4,
-            "ahead" : 10
+            "ahead" : 10,
+            "id" : 2
         },
         {
             "name" : "Math II - 4th block",
             "on_track" : 18,
             "behind" : 4,
-            "ahead" : 10
+            "ahead" : 10,
+            "id" : 3
         },
         {
             "name" : "Math II - 4th block",
             "on_track" : 18,
             "behind" : 4,
-            "ahead" : 10
+            "ahead" : 10,
+            "id" : 4
         },
         {
             "name" : "Math II - 3rd block",
             "on_track" : 15,
             "behind" : 9,
-            "ahead" : 6
+            "ahead" : 6,
+            "id" : 5
         }
     ]
 
