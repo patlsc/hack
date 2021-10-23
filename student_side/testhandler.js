@@ -17,7 +17,7 @@ questionDataList = [
 		"associatedknowledge":["sneed","chuck"]
 	},
 	{
-		"prompt":"question 2"
+		"prompt":"question 2",
 		"options":["sneeds","chucks"],
 		"correct":1,
 		"associatedknowledge":["sneed","chuck"]
