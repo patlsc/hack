@@ -61,7 +61,7 @@ function createCourseComponents(courses) {
         openCourseButton.classList.add("btn-primary")
         // openCourseButton.setAttribute("class", "btn btn-primary")
         openCourseButton.setAttribute("style", "margin:10px")
-        a.setAttribute("href", "courses/" + String(course["id"]) + ".html")
+        a.setAttribute("href", "classroom_pulse.html")
         openCourseButton.onclick = function() { openCourse() }
         openCourseButton.innerHTML = "Open Course"
         a.appendChild(openCourseButton)
@@ -129,7 +129,7 @@ function addChart(courseData, context) {
 window.onload += function() {
     const teacherName = "Teacher"
     document.getElementById("title").innerHTML = teacherName + "'s Courses"
-    document.getElementById("h1").innerHTML = teacherName + "'s Courses"
+    document.getElementById("breadcrumb").innerHTML = teacherName + "'s Courses"
 
     const c = [
         {
