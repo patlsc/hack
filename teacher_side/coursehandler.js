@@ -123,16 +123,20 @@ function addChart(courseData, context) {
     )
 }
 
-window.onload += function() {
+window.addEventListener("load", function() {
     const teacherName = "Teacher"
     document.getElementById("title").innerHTML = teacherName + "'s Courses"
     document.getElementById("h1").innerHTML = teacherName + "'s Courses"
+    console.log("got here");
     $.ajax({
-        url: "http://127.0.0.1/get_courses",
+        url: "http://127.0.0.1:3000/get_courses",
         cache: false,
         success: function(json_res){
             createCourseComponents(json_res);
+        },
+        error: function(err) {
+            console.log(err);
         }
       });
 
-}
+});
