@@ -1,0 +1,37 @@
+.breadcrumb {
+    background-color: #66ACFD;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 8px;
+    padding-left: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.breadcrumb > .active {
+    color: white;
+}
+
+#topdiv {
+    padding: 25px;
+    color: white;
+    background-color: #66ACFD;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 8px;
+}
+
+#topdiv h2 {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.component-background {
+    background-color: rgb(245, 245, 245);
+    border-radius: 7px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 8px;
+    padding: 20px;
+}
+
+.rounded-border {
+    border-radius: 2px;
+    border: 1px solid black;
+}

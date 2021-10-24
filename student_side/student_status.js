@@ -1,3 +1,6 @@
+const GREEN_COLOR = 'rgb(255, 43, 36)';
+const RED_COLOR = 'rgb(6, 214, 160)';
+
 function getItemInfo() {
     return {"itemsLearned": 34, "totalItems": 52}
 }
@@ -23,26 +26,26 @@ function loadItemsLearnedChart() {
                 label: 'Items Learned',
                 data: [itemInfo["itemsLearned"],itemInfo["totalItems"]],
                 backgroundColor: [
-                    '#117c0b',
-                    '#ffff10',
+                    RED_COLOR,
+                    GREEN_COLOR,
                 ],
                 borderColor: [
-                    '#117c0b',
-                    '#ffff10',
+                    RED_COLOR,
+                    GREEN_COLOR,
                 ],
                 borderWidth: 1
             }]
         },
         options: {
             elements: {
-              center: {
-                text: `${itemInfo["itemsLearned"]}/${itemInfo["totalItems"]} On-Track`,
-                  color: '#000000', // Default is #000000
-                  fontStyle: 'Arial', // Default is Arial
-                  sidePadding: 20, // Default is 20 (as a percentage)
-                  minFontSize: 25, // Default is 20 (in px), set to false and text will not wrap.
-                  lineHeight: 25 // Default is 25 (in px), used for when text wraps
-              }
+                center: {
+                    text: `${itemInfo["itemsLearned"]}/${itemInfo["totalItems"]} On-Track`,
+                    color: '#000000', // Default is #000000
+                    fontStyle: 'Arial', // Default is Arial
+                    sidePadding: 20, // Default is 20 (as a percentage)
+                    minFontSize: 25, // Default is 20 (in px), set to false and text will not wrap.
+                    lineHeight: 25 // Default is 25 (in px), used for when text wraps
+                }
             }
         }
     });
@@ -59,12 +62,12 @@ function loadItemsExpectedChart() {
                 label: 'Items Learned',
                 data: [itemInfo["itemsFulfilled"], itemInfo["totalItems"]],
                 backgroundColor: [
-                    '#117c0b',
-                    '#ffff10',
+                    RED_COLOR,
+                    GREEN_COLOR,
                 ],
                 borderColor: [
-                    '#117c0b',
-                    '#ffff10',
+                    RED_COLOR,
+                    GREEN_COLOR,
                 ],
                 borderWidth: 1
             }]
@@ -95,12 +98,12 @@ function loadItemsAverageChart() {
                 label: 'Items Learned',
                 data: [itemInfo["myItems"], itemInfo["averageItems"]],
                 backgroundColor: [
-                    '#117c0b',
-                    '#ffff10',
+                    RED_COLOR,
+                    GREEN_COLOR,
                 ],
                 borderColor: [
-                    '#117c0b',
-                    '#ffff10',
+                    RED_COLOR,
+                    GREEN_COLOR,
                 ],
                 borderWidth: 1
             }]
@@ -134,7 +137,6 @@ function loadSkillsLearnedTimeSeries() {
                 label: '# Items Learned',
                 data: data,
                 borderWidth: 1,
-                backgroundColor: 'rgba(17, 124, 11, 0.74)',
                 // pointBackgroundColor: "",
             }]
         },
@@ -177,7 +179,7 @@ function genAssesmentHTML(assessment) {
 
 function loadAssessmentHistory() {
     let assements = getAssessmentHistory();
-    let htmlAssements = assements.map((ass)=>genAssesmentHTML(ass)); 
+    let htmlAssements = assements.map((ass)=>genAssesmentHTML(ass));
     $("#assessment-history").append(
         htmlAssements
     );
@@ -188,7 +190,7 @@ function getExpectedItems() {
 }
 
 function loadExpectedItems() {
-    let expectedItems = getExpectedItems(); 
+    let expectedItems = getExpectedItems();
     $("#expected-skills").append(
         $("<div>", {class:"container"}).append(
             $("<p>").text("Expected number of skills to keep pace with the course"),
@@ -212,7 +214,6 @@ function loadAverageItems() {
         creation
     );
 }
-
 
 
 window.addEventListener("load", () => {
