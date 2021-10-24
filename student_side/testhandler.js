@@ -6,7 +6,7 @@ b = graph linear eq
 c = interpret linear eq 
 d = linear eq word problems 
 e = solve system of linear eq 
-f = system of linear eq word problems
+f = probability. formerly system of linear eq word problems
 */
 questionDataList = [
 	{
@@ -81,6 +81,42 @@ questionDataList = [
 		"correct":0,
 		"type":"b"
 	},
+	{
+		"prompt":"A club began with 3 members. Each month, each member brought one new member. Which function can be used to determine the number of members x months after the club began?",
+		"options":["2x+3","3x+1","1.5(2)^x","3(2)^x"],
+		"correct":3,
+		"type":"d"
+	},
+	{
+		"prompt":"Abby scored 87, 93, 96, and 89 on her first four history quizzes. What score does Abby need to get on her fifth quiz to have an average of exactly 91 on her history quizzes?",
+		"options":["90","94","98","100"],
+		"correct":0,
+		"type":"d"
+	},
+	{
+		"prompt":"What is the value of x where the graphs of f(x)=3x+7 and g(x)=2x+12 intersect?",
+		"options":["-22","-5","5","2"],
+		"correct":2,
+		"type":"e"
+	},
+	{
+		"prompt":"A bag contains 50 marbles, 28 red ones and 22 blue ones. A marble is picked at random from the bag. What is the probability of picking a red marble?",
+		"options":["22/50","28/50","50/28","50/22"],
+		"correct":1,
+		"type":"f"
+	},
+	{
+		"prompt":"A one digit number from 1 to 9 is picked, what is the probability it is odd?",
+		"options":["4/9","1/2","3/4","5/9"],
+		"correct":3,
+		"type":"f"
+	},
+	{
+		"prompt":"You roll two 6-sided dice. What is the probability the sum is 3?",
+		"options":["2/36","1/36","1/6","4/36"],
+		"correct":0,
+		"type":"f"
+	},
 ]
 currentQuestionData = questionDataList[0];
 currentQuestionData["qnumber"] = 1;
@@ -113,7 +149,8 @@ function addQuestion(questionData) {
 	var qprogressin = document.createElement("DIV");
 	qprogressin.setAttribute("class","progress-bar");
 	qprogressin.setAttribute("role","progressbar");
-	qprogressin.setAttribute("style","width:"+String(parseInt(Math.round(100*questionData["qnumber"]/questionData["qmax"])))+"%");
+	var progressamt = String(parseInt(Math.round(100*parseFloat(questionData["qnumber"])/parseFloat(questionData["qmax"]))));
+	qprogressin.setAttribute("style","width:"+progressamt+"%");
 	qprogressin.setAttribute("aria-valuemin","0");
 	qprogressin.setAttribute("aria-valuemax","100");
 	qprogressdiv.appendChild(qprogressin);
@@ -188,7 +225,7 @@ function submitAnswer() {
 		answerHistory.push({
 			"prompt":currentQuestionData["prompt"],
 			"correct":answerCorrect,
-			"associatedknowledge":currentQuestionData["associatedknowledge"]
+			"type":currentQuestionData["type"]
 		});
 
 		//checking if test is over
