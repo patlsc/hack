@@ -326,7 +326,7 @@ currentQuestionNumber = 0;
 
 answerHistory = []
 
-MAX_QUESTIONS = 15
+MAX_QUESTIONS = 6
 QUESTIONTIMEOUT = 1500;
 
 function find_question_of_type(type) {
@@ -462,7 +462,7 @@ function submitAnswer() {
 		});
 
 		//checking if test is over
-		if (currentQuestionNumber == questionDataList.length-1) {
+		if (currentQuestionNumber == MAX_QUESTIONS - 1) {
 			console.log(answerHistory);
 			setTimeout(endTest, QUESTIONTIMEOUT);
 		} else {
