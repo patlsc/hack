@@ -358,7 +358,6 @@ function startNewQuestion() {
 		}
 		if (eqSet(next_belief, history[currentQuestionNumber - 1].M)) {
 			console.log("Stuck unless alternative input, exiting")
-			endTest()
 		}
 	}
 	let question_possibilities = split_states(history[currentQuestionNumber].M)
@@ -474,6 +473,27 @@ function submitAnswer() {
 }
 
 function endTest() {
+	history[answerHistory.length - 1].R = 0
+	if (answerHistory[answerHistory.length - 1].correct) {
+		history[answerHistory.length - 1].R = 1
+	}
+	let next_belief = update_belief_state(history[answerHistory.length - 1].M, history[answerHistory.length - 1].Q, history[answerHistory.length - 1].R)
+	history.push({
+		"M": next_belief,
+		"Q": "",
+		"R": 0,
+		"K": "a"
+	})
+	if (next_belief.size === 1) {
+		console.log("Reached 1 knowledge state")
+	}
+	if (eqSet(next_belief, history[answerHistory.length - 1].M)) {
+		console.log("Stuck unless alternative input, exiting")
+	}
+
+	console.log("Last State: " + history[answerHistory.length].M)
+	console.log("Estimated Distribution:" + estimate_final_prob(history))
+
 	clearQuestionArea();
 	var testendtitle = document.createElement("H2");
 	testendtitle.innerHTML = "Test Results";
