@@ -477,6 +477,27 @@ function submitAnswer() {
 	}
 }
 
+function setCookie(name, value, days) {
+	var expires = "";
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+		expires = "; expires=" + date.toUTCString();
+	}
+	document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+function getCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for (var i = 0; i < ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+	}
+	return null;
+}
+
 function build_result_obj() {
 	let result = {
 		"learnt_skills": [],
@@ -508,25 +529,26 @@ function build_result_obj() {
 	let sum = new Set(["a", "b", "c", "d", "e", "f"])
 	for (const k of sum) {
 		if (state.self.includes(k)) {
-			result.learnt_skills.push(desc[k])
+			result.learnt_skills.push({id: 1, name: desc[k]})
 		} else {
-			result.forgotten_skills.push(desc[k])
+			result.forgotten_skills.push({id: 2, name: desc[k]})
 		}
 	}
 
+	let num = 1
 	for (const i of answerHistory) {
 		let correctness = 1.0
 		if (!i.correct) {
 			correctness = 0.0
 		}
 		result.questions.push({
-			id: i.id,
-			number: i.id,
+			"id": num,
+			"number": num++,
 			correctness: correctness
 		})
 	}
 
-	document.cookie = JSON.stringify(result)
+	setCookie("test", JSON.stringify(result), 1)
 }
 
 function endTest() {
