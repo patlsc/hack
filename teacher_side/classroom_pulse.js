@@ -191,13 +191,13 @@ function createItems(id, split1, split2, background) {
     ).css("display", "none");
 }
 
-function genericStudentView(id, dropdownItems, background) {
+function genericStudentView(title, id, dropdownItems, background) {
     let currentlyDisplaying = false; 
     let split = Math.floor(dropdownItems.length / 2 );
     let list1 = dropdownItems.splice(0, split);
     let items = createItems(id, dropdownItems, list1, background);
     return genericDiv("full-width student-view", `student-view-${id}`).append(
-        iconButton(`student-view-${id}`, `Students ${id}`, "bi bi-arrow-down", `full-width ${background}`).on("click", () => {
+        iconButton(`student-view-${id}`, `Students ${title}`, "bi bi-arrow-down", `full-width ${background}`).on("click", () => {
             if (currentlyDisplaying) {
                 $(`#student-view-${id}-students`).hide(400);
                 $(`#student-view-${id}-icon`).removeClass("bi-arrow-up").addClass("bi-arrow-down")
@@ -226,10 +226,14 @@ function createStudentDropDowns() {
     let onTrackDropDownItems = createDropdownItems(onTrackStudents);
     let aheadDropDownItems = createDropdownItems(aheadStudents);
 
+    console.log(behindDropDownItems)
+    console.log(onTrackDropDownItems)
+    console.log(aheadDropDownItems)
+
     $("#student-dropdowns").append(
-        genericStudentView("Behind", behindDropDownItems, "background-behind"),
-        genericStudentView("On Track", onTrackDropDownItems, "background-ontrack"),
-        genericStudentView("Ahead", aheadDropDownItems, "background-ahead")
+        genericStudentView("Behind", "Behind", behindDropDownItems, "background-behind"),
+        genericStudentView("On Track", "OnTrack", onTrackDropDownItems, "background-ontrack"),
+        genericStudentView("Ahead", "Ahead", aheadDropDownItems, "background-ahead")
     );
 }
 
