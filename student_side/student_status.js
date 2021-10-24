@@ -133,7 +133,7 @@ function loadAverageItems() {
         $("<p>").text(`${averageItems}`)
     )
     avg_skills.append(
-        creation
+        creation) +=
     );
 }
 
@@ -145,4 +145,4 @@ window.addEventListener("load", () => {
     loadAssessmentHistory();
     loadExpectedItems();
     loadAverageItems();
-});
+});onload
