@@ -214,13 +214,13 @@ f = probability. formerly system of linear eq word problems
 questionDataList = [
 	{
 		"prompt": "Which choice is the graph of y=(4-x)(x+2)?",
-		"options": ["<img src='q1graph1.png'>", "<img src='/images/q1graph2.png'>"],
+		"options": ["<img src='/images/q1graph1.png'>", "<img src='/images/q1graph2.png'>"],
 		"correct": 1,
 		"type": "b"
 	},
 	{
 		"prompt": "In which graph does the shaded region represent the solution set for the inequality 2x-y<4",
-		"options": ["<img src='q2graph1.png'>", "<img src='/images/q2graph2.png'>"],
+		"options": ["<img src='/images/q2graph1.png'>", "<img src='/images/q2graph2.png'>"],
 		"correct": 1,
 		"type": "b"
 	},
@@ -532,7 +532,7 @@ function build_result_obj() {
 function endTest() {
 	history[history.length - 1].R = 0
 	if (answerHistory[answerHistory.length - 1].correct) {
-		history[answerHistory.length - 1].R = 1
+		history[history.length - 1].R = 1
 	}
 	let next_belief = update_belief_state(history[history.length - 1].M, history[history.length - 1].Q, history[history.length - 1].R)
 	history.push({
@@ -552,7 +552,7 @@ function endTest() {
 	console.log("Estimated Distribution:" + estimate_final_prob(history))
 
 	build_result_obj()
-	window.location.replace("./status.html");
+	window.location.replace("./status/1");
 
 	clearQuestionArea();
 	var testendtitle = document.createElement("H2");

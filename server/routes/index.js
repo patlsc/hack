@@ -92,12 +92,16 @@ router.get("/get_courses", (req, res) => {
   res.send(response);
 });
 
-router.get("/status/:testid", (req,res)=>{
+router.get("/status/:testid", (req, res) => {
   res.render("status");
 })
 
 router.get("/student_home", (req, res) => {
   res.render("student")
+})
+
+router.get("/test", (req, res) => {
+  res.render("test")
 })
 
 router.get("/classroom_pulse", (req, res) => {
