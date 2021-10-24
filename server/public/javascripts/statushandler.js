@@ -56,6 +56,9 @@ function display_questions(questions) {
 }
 
 function init() {
+    if (document.cookie.length != 0) {
+        let status_data = JSON.parse(document.cookie);
+    }
     display_all_skills(status_data)
     display_questions(status_data.questions)
 }

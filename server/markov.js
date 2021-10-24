@@ -194,6 +194,18 @@ function estimate_final_prob(history) {
     return occurrences
 }
 
+function estimate_skill_prob(prob) {
+    let result = new Object()
+    for (const h of history) {
+        for (const state of h.M) {
+            let weight = 0
+            if (state.id in prob) {
+                weight = prob[state.id]
+            }
+        }
+    }
+}
+
 (async () => {
     for (var i = 1; i <= max_step; ++i) {
         console.log("Belief State Size: " + history[i - 1].M.size)
