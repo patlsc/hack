@@ -36,15 +36,29 @@ function subtitledSection(title, students) {
     section.appendChild(titleDiv)
 
     for (let i = 0; i < students.length; i++) {
-        const name = students[i]
+        const name = students[i][0]
+        const level = students[i][1]
 
+        const row = document.createElement("DIV")
+        row.classList.add("row")
+        row.classList.add("student")
         const student = document.createElement("DIV")
 
         student.classList.add("col")
-        student.classList.add("student")
+        // student.classList.add("student")
         student.innerHTML = name
 
-        section.appendChild(student)
+        for (let j = 0; j < level; j++) {
+            var img = document.createElement("img");
+            img.classList.add("star-img")
+            img.src = "star.png";
+
+            student.appendChild(img);
+        }
+
+        row.appendChild(student)
+        // row.appendChild(stars)
+        section.appendChild(row)
     }
 
     return section
@@ -119,8 +133,8 @@ function buildInsights(wrappers) {
         selectedWrappers.push(new TopicWrapper(newTopicDivs[i], component))
     }
 
-    component.appendChild(subtitledSection("Students struggling most", ["John Doe", "Tyrone Smalls", "Jeremy Wood"]))
-    component.appendChild(subtitledSection("Students with content mastery", ["Kyle Mike", "Shell Sea"]))
+    component.appendChild(subtitledSection("Students struggling most", [["John Doe", 1], ["Tyrone Smalls", 2], ["Jeremy Wood", 1]]))
+    component.appendChild(subtitledSection("Students with content mastery", [["Kyle Mike", 5], ["Shell Sea", 5]]))
 }
 
 
