@@ -196,7 +196,7 @@ function genericStudentView(id, dropdownItems, background) {
     let split = Math.floor(dropdownItems.length / 2 );
     let list1 = dropdownItems.splice(0, split);
     let items = createItems(id, dropdownItems, list1, background);
-    return genericDiv("full-width", `student-view-${id}`).append(
+    return genericDiv("full-width student-view", `student-view-${id}`).append(
         iconButton(`student-view-${id}`, `Students ${id}`, "bi bi-arrow-down", `full-width ${background}`).on("click", () => {
             if (currentlyDisplaying) {
                 $(`#student-view-${id}-students`).hide(400);
@@ -204,7 +204,6 @@ function genericStudentView(id, dropdownItems, background) {
                 currentlyDisplaying = false; 
             } else {
                 $(`#student-view-${id}-students`).show(200);
-                console.log("showing")
                 $(`#student-view-${id}-icon`).removeClass("bi-arrow-down").addClass("bi-arrow-up")
                 currentlyDisplaying = true;
             }
