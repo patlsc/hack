@@ -102,7 +102,7 @@ async function prompt_question(current_time) {
     let question_possibilities = split_states(history[current_time].M)
     let question = question_possibilities[getRandomInt(question_possibilities.length)]
     history[current_time].Q = question
-    console.log(question + "?")
+    console.log(question + "? (1-Correct/0-Incorrect)")
     const it = rl[Symbol.asyncIterator]();
     const answer = await it.next()
     history[current_time].R = parseInt(answer.value)
