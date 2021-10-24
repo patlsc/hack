@@ -174,6 +174,26 @@ function eqSet(as, bs) {
     return true;
 }
 
+function estimate_final_prob(history) {
+    let occurrences = new Object()
+    for (const h of history) {
+        for (const state of h.M) {
+            if (!(state.id in occurrences)) {
+                occurrences[state.id] = 0
+            }
+            occurrences[state.id] += 1
+        }
+    }
+    let sum = 0.0
+    for (const id in occurrences) {
+        sum += occurrences[id]
+    }
+    for (const id in occurrences) {
+        occurrences[id] = occurrences[id] / sum
+    }
+    return occurrences
+}
+
 (async () => {
     for (var i = 1; i <= max_step; ++i) {
         console.log("Belief State Size: " + history[i - 1].M.size)
@@ -192,5 +212,6 @@ function eqSet(as, bs) {
             console.log("Stuck unless alternative input")
         }
     }
-    console.log(history[max_step].M)
+    console.log("Last State: " + history[max_step].M)
+    console.log("Estimated Distribution:" + estimate_final_prob(history))
 })()
