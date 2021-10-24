@@ -189,7 +189,7 @@ function submitAnswer() {
 		answerHistory.push({
 			"prompt":currentQuestionData["prompt"],
 			"correct":answerCorrect,
-			"associatedknowledge":currentQuestionData["associatedknowledge"]
+			"type":currentQuestionData["type"]
 		});
 
 		//checking if test is over
