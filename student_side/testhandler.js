@@ -81,6 +81,24 @@ questionDataList = [
 		"correct":0,
 		"type":"b"
 	},
+	{
+		"prompt":"A club began with 3 members. Each month, each member brought one new member. Which function can be used to determine the number of members x months after the club began?",
+		"options":["2x+3","3x+1","1.5(2)^x","3(2)^x"],
+		"correct":3,
+		"type":"d"
+	},
+	{
+		"prompt":"Abby scored 87, 93, 96, and 89 on her first four history quizzes. What score does Abby need to get on her fifth quiz to have an average of exactly 91 on her history quizzes?",
+		"options":["90","94","98","100"],
+		"correct":0,
+		"type":"d"
+	},
+	{
+		"prompt":"What is the value of x where the graphs of f(x)=3x+7 and g(x)=2x+12 intersect?",
+		"options":["-22","-5","5","2"],
+		"correct":2,
+		"type":"e"
+	},
 ]
 currentQuestionData = questionDataList[0];
 currentQuestionData["qnumber"] = 1;
