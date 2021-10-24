@@ -15,6 +15,11 @@ const STATUS = {
     "Ahead": 2
 }; 
 
+const GRAY_BG = 'rgba(220, 220, 220, 0.74)';
+const RED_COLOR = 'rgb(255, 43, 36)';
+const GREEN_COLOR = 'rgb(6, 214, 160)';
+const PURPLE_COLOR = 'rgb(228, 73, 222)';
+
 let STUDENTS = [];
 
 function generateRandomStudents(noRandom) {
@@ -59,25 +64,20 @@ function createOnTrackChart() {
     const myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ['Students On-track', 'Students Behind'],
+            labels: ['Students On Track', 'Students Behind'],
             datasets: [{
-                label: 'Students On-track',
+                label: 'Students On Track',
                 data: [noStudentsOnTrack, noStudents - noStudentsOnTrack],
                 backgroundColor: [
-                    '#117c0b',
-                    '#ffff10',
-                ],
-                borderColor: [
-                    '#117c0b',
-                    '#ffff10',
-                ],
-                borderWidth: 1
+                    GREEN_COLOR,
+                    RED_COLOR,
+                ]
             }]
         },
         options: {
             elements: {
               center: {
-                text: `${noStudentsOnTrack}/${noStudents} On-Track`,
+                text: `${noStudentsOnTrack}/${noStudents} On Track`,
                 color: '#000000', // Default is #000000
                 fontStyle: 'Arial', // Default is Arial
                 sidePadding: 20, // Default is 20 (as a percentage)
@@ -103,7 +103,7 @@ function createTimeSeriesChart() {
             label: '# Items Learned',
             data: data,
             borderWidth: 1,
-            backgroundColor: 'rgba(17, 124, 11, 0.74)',
+            backgroundColor: GRAY_BG,
             // pointBackgroundColor: "",
         }]
     },
@@ -175,7 +175,7 @@ function createStudentDropDowns() {
 
     $("#student-dropdowns").append(
         genericStudentView("Behind", behindDropDownItems, "background-behind"),
-        genericStudentView("Ontrack", onTrackDropDownItems, "background-ontrack"),
+        genericStudentView("On Track", onTrackDropDownItems, "background-ontrack"),
         genericStudentView("Ahead", aheadDropDownItems, "background-ahead")
     );
 }
