@@ -55,12 +55,17 @@ function display_questions(questions) {
 
 }
 
+
 function init() {
+    console.log(document.cookie)
     if (document.cookie.length != 0) {
-        let status_data = JSON.parse(document.cookie);
+        let status_data = JSON.parse(getCookie("test"));
+        display_all_skills(status_data)
+        display_questions(status_data.questions)
+    } else {
+        display_all_skills(status_data)
+        display_questions(status_data.questions)
     }
-    display_all_skills(status_data)
-    display_questions(status_data.questions)
 }
 
 window.onload = init

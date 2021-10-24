@@ -517,12 +517,12 @@ function build_result_obj() {
 	}
 
 	let desc = {
-		a: "Solve lineq",
-		b: "graph lineq",
-		c: "interpret lineq",
-		d: "lineq word problem",
-		e: "system of lineq",
-		f: "system of lineq word problems"
+		a: "Solve Linear Equation",
+		b: "Graph Linear Equation",
+		c: "Interpret Linear Equation",
+		d: "Linear Equation Word Problem",
+		e: "System of Linear Equation",
+		f: "System of Linear Equation Word Problem"
 	}
 
 	let state = learning_space[max_id]
@@ -575,22 +575,4 @@ function endTest() {
 
 	build_result_obj()
 	window.location.replace("./status/1");
-
-	clearQuestionArea();
-	var testendtitle = document.createElement("H2");
-	testendtitle.innerHTML = "Test Results";
-	testarea.appendChild(testendtitle);
-
-	var sumCorrect = 0;
-	for (var j = 0; j < answerHistory.length; j++) {
-		var anstext = document.createElement("P");
-		var txtcorrectindicator = answerHistory[j]["correct"] ? "Correct" : "Incorrect";
-		var txtpromptindicator = answerHistory[j]["prompt"].length > 20 ? answerHistory[j]["prompt"].substring(0, 20) + "..." : answerHistory[j]["prompt"];
-		anstext.innerHTML = txtpromptindicator + "\t" + txtcorrectindicator;
-		sumCorrect += answerHistory[j]["correct"] ? 1 : 0;
-		testarea.appendChild(anstext);
-	}
-	var testendscore = document.createElement("H3");
-	testendscore.innerHTML = "Total Score: " + String(sumCorrect) + "/" + String(answerHistory.length);
-	testarea.appendChild(testendscore);
 }
