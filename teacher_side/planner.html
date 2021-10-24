@@ -8,23 +8,29 @@
         src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous"></script>
-        <link href="course_list.css" rel="stylesheet">
+        <link href="planner.css" rel="stylesheet">
     </head>
 
     <body>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item active" aria-current="page" id="breadcrumb">Home</li>
+                <li class="breadcrumb-item"><a href="course_list.html">Courses</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Math II - 2nd Block</li>
             </ol>
         </nav>
 
         <div class="container-fluid">
-            <div class="row row-cols-3" id="component-area">
-                <!-- Container components populated here -->
+            <div class="row" id="component-area">
+                <div class="col-auto component" id="struggle-topics">
+                    <div class="title-text">Topics most struggled with</div>
+                </div>
+                <div class="col component" id="insights">
+                    <div class="title-text">Detailed insights</div>
+                </div>
             </div>
         </div>
 
-        <script src="course_list.js"></script>
+        <script src="planner.js"></script>
         
     </body>
 </html>
