@@ -125,7 +125,7 @@ currentQuestionNumber = 0;
 
 answerHistory = [];
 
-QUESTIONTIMEOUT = 2000;
+QUESTIONTIMEOUT = 1500;
 
 //updates currentQuestionData and clears screen
 function startNewQuestion() {
