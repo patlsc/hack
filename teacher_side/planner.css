@@ -104,3 +104,9 @@
     height: 28px;
     filter: saturate(0%);
 }
+
+.group-component {
+    background-color: rgb(255, 255, 255);
+    border-radius: 7px;
+    margin-top: 10px;
+}

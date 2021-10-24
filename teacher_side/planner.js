@@ -64,6 +64,63 @@ function subtitledSection(title, students) {
     return section
 }
 
+function createSuggestedGroupsSection() {
+    const section = document.createElement("DIV")
+
+    const titleDiv = document.createElement("DIV")
+    titleDiv.classList.add("subtitle-text")
+    titleDiv.innerHTML = "Suggested group pairings"
+    section.appendChild(titleDiv)
+
+    const students1 = [["John Doe", 1], ["Tyrone Smalls", 2], ["Kyle Mike", 5]]
+    const students2 = [["Shell Sea", 5], ["Tyrone Smalls", 2], ["Jeremy Wood", 1]]
+
+    section.appendChild(createSuggestedGroup(students1))
+    section.appendChild(createSuggestedGroup(students2))
+
+    return section
+}
+
+function createSuggestedGroup(students) {
+    const group = document.createElement("DIV")
+    group.classList.add("group-component")
+
+    const row = document.createElement("DIV")
+    // row.classList.add("row")
+    // row.classList.add("row-cols-3")
+
+    console.log(students)
+    for (let i = 0; i < students.length; i++) {
+        
+        const name = students[i][0]
+        const level = students[i][1]
+        console.log(name)
+        console.log(i)
+        // row.classList.add("student")
+        const student = document.createElement("DIV")
+
+        student.classList.add("col")
+        student.classList.add("student")
+        student.innerHTML = name
+
+        for (let j = 0; j < level; j++) {
+            var img = document.createElement("img");
+            img.classList.add("star-img")
+            img.src = "star.png";
+
+            student.appendChild(img);
+        }
+
+        
+        row.appendChild(student)
+        // row.appendChild(stars)
+    }
+
+    group.appendChild(row)
+
+    return group
+}
+
 class TopicWrapper {
     constructor(div, parent) {
         this.div = div
@@ -135,6 +192,8 @@ function buildInsights(wrappers) {
 
     component.appendChild(subtitledSection("Students struggling most", [["John Doe", 1], ["Tyrone Smalls", 2], ["Jeremy Wood", 1]]))
     component.appendChild(subtitledSection("Students with content mastery", [["Kyle Mike", 5], ["Shell Sea", 5]]))
+
+    component.appendChild(createSuggestedGroupsSection())
 }
 
 
