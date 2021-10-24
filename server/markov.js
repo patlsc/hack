@@ -185,6 +185,9 @@ function eqSet(as, bs) {
             "R": 0,
             "K": "a"
         })
+        if (next_belief.size === 1) {
+            console.log("Reached 1 knowledge state")
+        }
         if (eqSet(next_belief, history[i - 1].M)) {
             console.log("Stuck unless alternative input")
         }
