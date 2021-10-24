@@ -6,7 +6,7 @@ b = graph linear eq
 c = interpret linear eq 
 d = linear eq word problems 
 e = solve system of linear eq 
-f = system of linear eq word problems
+f = probability. formerly system of linear eq word problems
 */
 questionDataList = [
 	{
@@ -98,6 +98,24 @@ questionDataList = [
 		"options":["-22","-5","5","2"],
 		"correct":2,
 		"type":"e"
+	},
+	{
+		"prompt":"A bag contains 50 marbles, 28 red ones and 22 blue ones. A marble is picked at random from the bag. What is the probability of picking a red marble?",
+		"options":["22/50","28/50","50/28","50/22"],
+		"correct":1,
+		"type":"f"
+	},
+	{
+		"prompt":"A one digit number from 1 to 9 is picked, what is the probability it is odd?",
+		"options":["4/9","1/2","3/4","5/9"],
+		"correct":3,
+		"type":"f"
+	},
+	{
+		"prompt":"You roll two 6-sided dice. What is the probability the sum is 3?",
+		"options":["2/36","1/36","1/6","4/36"],
+		"correct":0,
+		"type":"f"
 	},
 ]
 currentQuestionData = questionDataList[0];
