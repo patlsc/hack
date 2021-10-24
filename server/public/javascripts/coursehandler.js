@@ -8,6 +8,9 @@ function createCourseComponents(courses) {
     
         var component = document.createElement("DIV")
         component.classList.add("course-component")
+        component.addEventListener("click", ()=>{
+            window.location.href = "http://127.0.0.1:3000/classroom_pulse";
+        })
 
         const course = courses[i]
 

@@ -15,6 +15,11 @@ const STATUS = {
     "Ahead": 2
 }; 
 
+const GRAY_BG = 'rgba(220, 220, 220, 0.74)';
+const RED_COLOR = 'rgb(255, 43, 36)';
+const GREEN_COLOR = 'rgb(6, 214, 160)';
+const PURPLE_COLOR = 'rgb(228, 73, 222)';
+
 let STUDENTS = [];
 
 function generateRandomStudents(noRandom) {
@@ -47,6 +52,71 @@ function getSkillLearningHistory() {
     return data;
 }
 
+function createOnTrackModule() {
+    const title = document.getElementById("track-title")
+
+    let noStudentsOnTrack = 0;
+    for (let i = 0; i<STUDENTS.length; i++) {
+        if (STUDENTS[i].status === STATUS["OnTrack"] || STUDENTS[i].status === STATUS["Ahead"]) {
+            noStudentsOnTrack += 1;
+        }
+    }
+
+    title.innerHTML = String(noStudentsOnTrack) + "/" + String(STUDENTS.length) + " students on track"
+
+    createOnTrackChart()
+    createTimeSeriesChart()
+}
+
+function createTopicsStruggedWithComponent() {
+    // A topic can be struggled with on three levels of severity, with 0 being the least severe and 2 being the most severe.
+    const STRUGGLE_TOPICS = [
+        ["2.A.1 Solving systems of linear equations", 2],
+        ["2.A.2 Timesing", 2],
+        ["2.B.5 Eating", 1],
+        ["2.C.3 Doing something else", 0]
+    ]
+
+    const component = document.getElementById("struggle-component")
+    
+    for (let i = 0; i < STRUGGLE_TOPICS.length; i++) {
+        const topic = STRUGGLE_TOPICS[i][0]
+        const severity = STRUGGLE_TOPICS[i][1]
+
+        const topicDiv = document.createElement("DIV")
+
+        topicDiv.classList.add("col")
+        topicDiv.classList.add("topic")
+        topicDiv.innerHTML = topic
+
+        switch (severity) {
+            case 0:
+                topicDiv.classList.add("minimal")
+                break
+            case 1:
+                topicDiv.classList.add("moderate")
+                break
+            case 2:
+                topicDiv.classList.add("severe")
+                break
+        }
+
+        component.appendChild(topicDiv)
+    }
+
+    const row = document.createElement("DIV")
+    row.classList.add("row")
+    const plannerButton = document.createElement("BUTTON")
+    plannerButton.classList.add("btn")
+    plannerButton.classList.add("btn-primary")
+    plannerButton.classList.add("course-planner-button")
+    plannerButton.innerHTML = "Open course planner"
+    plannerButton.setAttribute("type", "button")
+    row.appendChild(plannerButton)
+
+    component.appendChild(row)
+}
+
 function createOnTrackChart() {
     let noStudentsOnTrack = 0;
     for (let i = 0; i<STUDENTS.length; i++) {
@@ -59,33 +129,16 @@ function createOnTrackChart() {
     const myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ['Students On-track', 'Students Behind'],
+            labels: ['Students On Track', 'Students Behind'],
             datasets: [{
-                label: 'Students On-track',
+                label: 'Students On Track',
                 data: [noStudentsOnTrack, noStudents - noStudentsOnTrack],
                 backgroundColor: [
-                    '#117c0b',
-                    '#ffff10',
-                ],
-                borderColor: [
-                    '#117c0b',
-                    '#ffff10',
-                ],
-                borderWidth: 1
+                    GREEN_COLOR,
+                    RED_COLOR,
+                ]
             }]
-        },
-        options: {
-            elements: {
-              center: {
-                text: `${noStudentsOnTrack}/${noStudents} On-Track`,
-                color: '#000000', // Default is #000000
-                fontStyle: 'Arial', // Default is Arial
-                sidePadding: 20, // Default is 20 (as a percentage)
-                minFontSize: 25, // Default is 20 (in px), set to false and text will not wrap.
-                lineHeight: 25 // Default is 25 (in px), used for when text wraps
-              }
-            }
-          }
+        }   
     });
 }
 
@@ -96,18 +149,18 @@ function createTimeSeriesChart() {
     const labels = skillsLearned.map((i) => i.date);
     const data = skillsLearned.map((i) => i.data); 
     const chart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels,
-        datasets: [{
-            label: '# Items Learned',
-            data: data,
-            borderWidth: 1,
-            backgroundColor: 'rgba(17, 124, 11, 0.74)',
-            // pointBackgroundColor: "",
-        }]
-    },
-    options: {}
+        type: 'line',
+        data: {
+            labels,
+            datasets: [{
+                label: '# of items learned',
+                data: data,
+                borderWidth: 1,
+                backgroundColor: GRAY_BG,
+                // pointBackgroundColor: "",
+            }]
+        },
+        options: {}
     });
 }
 
@@ -116,7 +169,7 @@ function genericDiv(classes, id) {
 }
 
 function iconButton(id, text, icon, extraClasses) {
-    let button = $("<button>", {class: `btn ${extraClasses}`, id:`${id}-button`}).text(text);
+    let button = $("<button>", {class: `btn ${extraClasses} icon-button`, id:`${id}-button`}).text(text);
     return button.append(
             $("<i>", {class:icon, id:`${id}-icon`})
     );
@@ -138,19 +191,19 @@ function createItems(id, split1, split2, background) {
     ).css("display", "none");
 }
 
-function genericStudentView(id, dropdownItems, background) {
+function genericStudentView(title, id, dropdownItems, background) {
     let currentlyDisplaying = false; 
     let split = Math.floor(dropdownItems.length / 2 );
     let list1 = dropdownItems.splice(0, split);
     let items = createItems(id, dropdownItems, list1, background);
-    return genericDiv("full-width", `student-view-${id}`).append(
-        iconButton(`student-view-${id}`, `Students ${id}`, "bi bi-arrow-down", `full-width ${background}`).on("click", () => {
+    return genericDiv("full-width student-view", `student-view-${id}`).append(
+        iconButton(`student-view-${id}`, `Students ${title}`, "bi bi-arrow-down", `full-width ${background}`).on("click", () => {
             if (currentlyDisplaying) {
                 $(`#student-view-${id}-students`).hide(400);
                 $(`#student-view-${id}-icon`).removeClass("bi-arrow-up").addClass("bi-arrow-down")
                 currentlyDisplaying = false; 
             } else {
-                $(`#student-view-${id}-students`).show(400);
+                $(`#student-view-${id}-students`).show(200);
                 $(`#student-view-${id}-icon`).removeClass("bi-arrow-down").addClass("bi-arrow-up")
                 currentlyDisplaying = true;
             }
@@ -174,9 +227,9 @@ function createStudentDropDowns() {
     let aheadDropDownItems = createDropdownItems(aheadStudents);
 
     $("#student-dropdowns").append(
-        genericStudentView("Behind", behindDropDownItems, "background-behind"),
-        genericStudentView("Ontrack", onTrackDropDownItems, "background-ontrack"),
-        genericStudentView("Ahead", aheadDropDownItems, "background-ahead")
+        genericStudentView("Behind", "Behind", behindDropDownItems, "background-behind"),
+        genericStudentView("On Track", "OnTrack", onTrackDropDownItems, "background-ontrack"),
+        genericStudentView("Ahead", "Ahead", aheadDropDownItems, "background-ahead")
     );
 }
 
@@ -206,10 +259,11 @@ function createDifficultItems() {
 
 window.addEventListener("load", ()=>{genericDiv
     STUDENTS = getStudents(); // Singleton moment, could be changed to server call 
-    createOnTrackChart();
-    createTimeSeriesChart();
+
+    createOnTrackModule();
+    createTopicsStruggedWithComponent();
+
     createStudentDropDowns();
-    createDifficultItems();
 });
 
 

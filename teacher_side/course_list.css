@@ -1,0 +1,48 @@
+.course-component {
+    background-color: rgb(245, 245, 245);
+    border-radius: 7px;
+    width: 30%;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 8px;
+    
+}
+
+.title-text {
+    font-size: 30px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.breadcrumb {
+    background-color: #66ACFD;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 8px;
+    padding-left: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.breadcrumb >.active {
+    color: white;
+}
+
+.container-fluid {
+    padding-top: 30px;
+    padding-left: 50px;
+    padding-bottom: 50px;
+}
+
+.row {
+    gap: 30px;
+}
+
+.status-row {
+    padding-left: 10px;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+canvas {
+    padding-left: -20px;
+}

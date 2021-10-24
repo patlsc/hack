@@ -58,7 +58,6 @@ function createCourseComponents(courses) {
         openCourseButton.classList.add("row")
         openCourseButton.classList.add("btn")
         openCourseButton.classList.add("btn-primary")
-        // openCourseButton.setAttribute("class", "btn btn-primary")
         openCourseButton.setAttribute("style", "margin:10px")
         openCourseButton.onclick = function() { openCourse() }
         openCourseButton.innerHTML = "Open Course"
@@ -95,6 +94,8 @@ function createCourseComponents(courses) {
 }
 
 function openCourse(courseReference) {
+    window.location.href = "http://127.0.0.1:3000/classroom_pulse"
+    console.log("ya")
     return null
 }
 
@@ -126,7 +127,7 @@ function addChart(courseData, context) {
 window.addEventListener("load", function() {
     const teacherName = "Teacher"
     document.getElementById("title").innerHTML = teacherName + "'s Courses"
-    document.getElementById("h1").innerHTML = teacherName + "'s Courses"
+    document.getElementById("breadcrumb").innerHTML = teacherName + "'s Courses"
     console.log("got here");
     $.ajax({
         url: "http://127.0.0.1:3000/get_courses",

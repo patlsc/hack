@@ -1,0 +1,36 @@
+.breadcrumb {
+    background-color: #66ACFD;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 8px;
+    padding-left: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.breadcrumb >.active {
+    color: white;
+}
+
+.container-fluid {
+    padding-top: 30px;
+    padding-left: 50px;
+    padding-bottom: 50px;
+}
+
+.component {
+    background-color: rgb(245, 245, 245);
+    border-radius: 7px;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 8px;
+}
+
+.row {
+    gap: 20px;
+}
+
+.title-text {
+    font-size: 30px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
