@@ -54,18 +54,15 @@ function createCourseComponents(courses) {
         }
 
         // Create & add button
-        var a = document.createElement("A")
         var openCourseButton = document.createElement("BUTTON")
         openCourseButton.classList.add("row")
         openCourseButton.classList.add("btn")
         openCourseButton.classList.add("btn-primary")
         // openCourseButton.setAttribute("class", "btn btn-primary")
         openCourseButton.setAttribute("style", "margin:10px")
-        a.setAttribute("href", "classroom_pulse.html")
         openCourseButton.onclick = function() { openCourse() }
         openCourseButton.innerHTML = "Open Course"
-        a.appendChild(openCourseButton)
-        textColumn.appendChild(a)
+        textColumn.appendChild(openCourseButton)
 
         contentRow.appendChild(textColumn)
 
@@ -129,45 +126,6 @@ function addChart(courseData, context) {
 window.addEventListener("load", function() {
     const teacherName = "Teacher"
     document.getElementById("title").innerHTML = teacherName + "'s Courses"
-<<<<<<< HEAD
-    document.getElementById("breadcrumb").innerHTML = teacherName + "'s Courses"
-
-    const c = [
-        {
-            "name" : "Math I - 2nd block",
-            "on_track" : 26,
-            "behind" : 8,
-            "ahead" : 5,
-            "id" : 1
-        },
-        {
-            "name" : "Math II - 4th block",
-            "on_track" : 18,
-            "behind" : 4,
-            "ahead" : 10,
-            "id" : 2
-        },
-        {
-            "name" : "Math II - 4th block",
-            "on_track" : 18,
-            "behind" : 4,
-            "ahead" : 10,
-            "id" : 3
-        },
-        {
-            "name" : "Math II - 4th block",
-            "on_track" : 18,
-            "behind" : 4,
-            "ahead" : 10,
-            "id" : 4
-        },
-        {
-            "name" : "Math II - 3rd block",
-            "on_track" : 15,
-            "behind" : 9,
-            "ahead" : 6,
-            "id" : 5
-=======
     document.getElementById("h1").innerHTML = teacherName + "'s Courses"
     console.log("got here");
     $.ajax({
@@ -178,7 +136,6 @@ window.addEventListener("load", function() {
         },
         error: function(err) {
             console.log(err);
->>>>>>> d6ffc9938c15d74d4737e82c3cbc84224830a14a
         }
       });
 
