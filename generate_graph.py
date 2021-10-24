@@ -23,14 +23,17 @@ def build_graph(set_to_build):
     all_states = []
     for idx, subset in enumerate(set_to_build):
         neigh = []
+        bef = []
         for inner_idx, potential_cand in enumerate(set_to_build):
             larger = True if len(potential_cand) > len(subset) else False
 
             if len(potential_cand.difference(subset)) == 1 and potential_cand.intersection(subset) == subset and larger:
                 neigh.append(inner_idx)
+            if len(subset.difference(potential_cand)) == 1 and potential_cand.intersection(subset) == potential_cand and not larger:
+                bef.append(inner_idx)
 
         all_states.append(
-            {'id': idx, 'self': list(subset), 'neighbors': neigh}
+            {'id': idx, 'self': list(subset), 'neighbors': neigh, "before": bef}
         )
     return all_states
 
@@ -44,4 +47,4 @@ graph = build_graph(create_subset(main('a', 'b', 'c', 'd', 'e', 'f')))
 # test_graph(graph)
 
 print(graph)
-json.dump(graph, open("ls.json", 'w'))
+json.dump(graph, open("/home/byrdofafeather/ByrdOfAFeather/hack/ls.json", 'w'))
