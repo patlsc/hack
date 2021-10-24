@@ -226,10 +226,6 @@ function createStudentDropDowns() {
     let onTrackDropDownItems = createDropdownItems(onTrackStudents);
     let aheadDropDownItems = createDropdownItems(aheadStudents);
 
-    console.log(behindDropDownItems)
-    console.log(onTrackDropDownItems)
-    console.log(aheadDropDownItems)
-
     $("#student-dropdowns").append(
         genericStudentView("Behind", "Behind", behindDropDownItems, "background-behind"),
         genericStudentView("On Track", "OnTrack", onTrackDropDownItems, "background-ontrack"),
