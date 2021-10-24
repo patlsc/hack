@@ -109,7 +109,7 @@ router.get("/course_list", (req, res) => {
 })
 
 router.get("/student_stats", (req, res) => {
-  res.render("student_status")
+  res.render("student_stats")
 })
 
 module.exports = router;

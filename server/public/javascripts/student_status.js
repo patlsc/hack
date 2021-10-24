@@ -1,3 +1,6 @@
+const GREEN_COLOR = 'rgb(255, 43, 36)';
+const RED_COLOR = 'rgb(6, 214, 160)';
+
 function getItemInfo() {
     return {"itemsLearned": 34, "totalItems": 52}
 }
@@ -23,28 +26,100 @@ function loadItemsLearnedChart() {
                 label: 'Items Learned',
                 data: [itemInfo["itemsLearned"],itemInfo["totalItems"]],
                 backgroundColor: [
-                    '#117c0b',
-                    '#ffff10',
+                    RED_COLOR,
+                    GREEN_COLOR,
                 ],
                 borderColor: [
-                    '#117c0b',
-                    '#ffff10',
+                    RED_COLOR,
+                    GREEN_COLOR,
                 ],
                 borderWidth: 1
             }]
         },
         options: {
             elements: {
-              center: {
-                text: `${itemInfo["itemsLearned"]}/${itemInfo["totalItems"]} On-Track`,
-                color: '#000000', // Default is #000000
-                fontStyle: 'Arial', // Default is Arial
-                sidePadding: 20, // Default is 20 (as a percentage)
-                minFontSize: 25, // Default is 20 (in px), set to false and text will not wrap.
-                lineHeight: 25 // Default is 25 (in px), used for when text wraps
-              }
+                center: {
+                    text: `${itemInfo["itemsLearned"]}/${itemInfo["totalItems"]} On-Track`,
+                    color: '#000000', // Default is #000000
+                    fontStyle: 'Arial', // Default is Arial
+                    sidePadding: 20, // Default is 20 (as a percentage)
+                    minFontSize: 25, // Default is 20 (in px), set to false and text will not wrap.
+                    lineHeight: 25 // Default is 25 (in px), used for when text wraps
+                }
             }
-          }
+        }
+    });
+}
+
+function loadItemsExpectedChart() {
+    let itemInfo = {"itemsFulfilled": 30, "totalItems": 0}
+    const ctx = document.getElementById('expected-chart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Items Learned', 'Items Not Learned'],
+            datasets: [{
+                label: 'Items Learned',
+                data: [itemInfo["itemsFulfilled"], itemInfo["totalItems"]],
+                backgroundColor: [
+                    RED_COLOR,
+                    GREEN_COLOR,
+                ],
+                borderColor: [
+                    RED_COLOR,
+                    GREEN_COLOR,
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            elements: {
+                center: {
+                    text: `${itemInfo["itemsFulfilled"]}/${itemInfo["totalItems"]} On-Track`,
+                    color: '#000000', // Default is #000000
+                    fontStyle: 'Arial', // Default is Arial
+                    sidePadding: 20, // Default is 20 (as a percentage)
+                    minFontSize: 25, // Default is 20 (in px), set to false and text will not wrap.
+                    lineHeight: 25 // Default is 25 (in px), used for when text wraps
+                }
+            }
+        }
+    });
+}
+
+function loadItemsAverageChart() {
+    let itemInfo = {"myItems": 34, "averageItems": 20}
+    const ctx = document.getElementById('average-chart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['My Items', 'Average Items'],
+            datasets: [{
+                label: 'Items Learned',
+                data: [itemInfo["myItems"], itemInfo["averageItems"]],
+                backgroundColor: [
+                    RED_COLOR,
+                    GREEN_COLOR,
+                ],
+                borderColor: [
+                    RED_COLOR,
+                    GREEN_COLOR,
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            elements: {
+                center: {
+                    text: `${itemInfo["myItems"]}/${itemInfo["averageItems"]} On-Track`,
+                    color: '#000000', // Default is #000000
+                    fontStyle: 'Arial', // Default is Arial
+                    sidePadding: 20, // Default is 20 (as a percentage)
+                    minFontSize: 25, // Default is 20 (in px), set to false and text will not wrap.
+                    lineHeight: 25 // Default is 25 (in px), used for when text wraps
+                }
+            }
+        }
     });
 }
 
@@ -53,20 +128,23 @@ function loadSkillsLearnedTimeSeries() {
 
     const ctx = document.getElementById('timeseries-chart').getContext('2d');
     const labels = skillsLearned.map((i) => i.date);
-    const data = skillsLearned.map((i) => i.data); 
+    const data = skillsLearned.map((i) => i.data);
     const chart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels,
-        datasets: [{
-            label: '# Items Learned',
-            data: data,
-            borderWidth: 1,
-            backgroundColor: 'rgba(17, 124, 11, 0.74)',
-            // pointBackgroundColor: "",
-        }]
-    },
-    options: {}
+        type: 'line',
+        data: {
+            labels,
+            datasets: [{
+                label: '# Items Learned',
+                data: data,
+                borderWidth: 1,
+                // pointBackgroundColor: "",
+            }]
+        },
+        options: {
+            "legend": {
+                "position": "bottom"
+            }
+        }
     });
 }
 
@@ -92,8 +170,8 @@ function getAssessmentHistory() {
 
 
 function genAssesmentHTML(assessment) {
-    return $("<div>", {"class": "full-width"}).append(
-        $("<button>", {"class": "full-width"}).on("click", ()=>{
+    return $("<div>", {"class": "list-group"}).append(
+        $("<a>", {"class": "list-group-item", "href": "#"}).on("click", () => {
             // TODO: Go to ass
         }).text(`${assessment.name} ${assessment.items_learned} / ${assessment.items_tested}`)
     );
@@ -101,7 +179,7 @@ function genAssesmentHTML(assessment) {
 
 function loadAssessmentHistory() {
     let assements = getAssessmentHistory();
-    let htmlAssements = assements.map((ass)=>genAssesmentHTML(ass)); 
+    let htmlAssements = assements.map((ass) => genAssesmentHTML(ass));
     $("#assessment-history").append(
         htmlAssements
     );
@@ -112,7 +190,7 @@ function getExpectedItems() {
 }
 
 function loadExpectedItems() {
-    let expectedItems = getExpectedItems(); 
+    let expectedItems = getExpectedItems();
     $("#expected-skills").append(
         $("<div>", {class:"container"}).append(
             $("<p>").text("Expected number of skills to keep pace with the course"),
@@ -138,11 +216,12 @@ function loadAverageItems() {
 }
 
 
-
 window.addEventListener("load", () => {
     loadItemsLearnedChart();
-    loadSkillsLearnedTimeSeries(); 
+    loadItemsExpectedChart();
+    loadItemsAverageChart()
+    loadSkillsLearnedTimeSeries();
     loadAssessmentHistory();
     loadExpectedItems();
     loadAverageItems();
-});onload
+});

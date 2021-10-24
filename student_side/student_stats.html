@@ -1,74 +1,78 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>{{Student}}'s Summary</title>
-        <script src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js'></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link href="student.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
-        <script src="student_status.js"></script>
-        <script
-                src="https://code.jquery.com/jquery-3.4.1.min.js"
-                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-                crossorigin="anonymous"></script>
-        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
-        <link
-                rel="stylesheet"
-                href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
-        />
-    </head>
-    <body>
+<head>
+    <title>{{Student}}'s Summary</title>
+    <script src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js'></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+    <link href="student.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
+    <script src="student_status.js"></script>
+    <script
+            crossorigin="anonymous"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+            rel="stylesheet"
+    />
+</head>
+<body>
 
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="student.html">Home</a></li>
-            <li aria-current="page" class="breadcrumb-item active">{person}'s Status</li>
-        </ol>
-    </nav>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="student.html">Home</a></li>
+        <li aria-current="page" class="breadcrumb-item active">{person}'s Status</li>
+    </ol>
+</nav>
 
-    <div class="container">
+<div class="container">
 
-        <div class="row justify-content-evenly component-background">
-            <h2>Skill Summary</h2>
-            <div class="card" style="width: 14rem;">
-                <canvas class="card-img-top" id="ontrack-chart"></canvas>
-                <div class="card-body">
-                    <h5 class="card-title">Total Items Fulfilled: 34/87</h5>
-                    <a class="btn btn-primary" href="#">My Skills</a>
-                </div>
-            </div>
-
-            <div class="card" style="width: 14rem;">
-                <canvas class="card-img-top" id="expected-chart"></canvas>
-                <div class="card-body">
-                    <h5 class="card-title">Expected Items Fulfilled: 30/30</h5>
-                </div>
-            </div>
-
-            <div class="card" style="width: 14rem;">
-                <canvas class="card-img-top" id="average-chart"></canvas>
-                <div class="card-body">
-                    <h5 class="card-title">Compared to Class Average: 34/20</h5>
-                </div>
+    <div class="row justify-content-evenly component-background">
+        <h2>Skill Summary</h2>
+        <div class="card" style="width: 14rem;">
+            <canvas class="card-img-top" id="ontrack-chart"></canvas>
+            <div class="card-body">
+                <h5 class="card-title">Total Items Fulfilled: 34/87</h5>
+                <a class="btn btn-primary" href="#">My Skills</a>
             </div>
         </div>
 
-        <div class="py-4">
-            <div class="row component-background">
-                <h2>History</h2>
-                <div class="col">
-                    <h3>Assessment</h3>
-                    <div id="assessment-history">
-
-                    </div>
-                </div>
-                <div class="col">
-                    <h3>Skills</h3>
-                    <canvas id="timeseries-chart"></canvas>
+        <div class="card" style="width: 14rem;">
+            <canvas class="card-img-top" id="expected-chart"></canvas>
+            <div class="card-body">
+                <h5 class="card-title">Expected Items Fulfilled: 30/30</h5>
             </div>
         </div>
+
+        <div class="card" style="width: 14rem;">
+            <canvas class="card-img-top" id="average-chart"></canvas>
+            <div class="card-body">
+                <h5 class="card-title">Compared to Class Average: 34/20</h5>
+            </div>
         </div>
-    </body>
+    </div>
+
+    <div class="py-4">
+        <div class="row component-background">
+            <h2>History</h2>
+            <div class="col">
+                <h3>Assessment</h3>
+                <div id="assessment-history">
+
+                </div>
+            </div>
+            <div class="col">
+                <h3>Skills</h3>
+                <canvas id="timeseries-chart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
 </html>

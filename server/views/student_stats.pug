@@ -1,0 +1,45 @@
+doctype html
+html
+    head
+        title {{Student}}'s Summary
+        script(src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js')
+        script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p' crossorigin='anonymous')
+        link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3' crossorigin='anonymous')
+        link(href='/stylesheets/student.css' rel='stylesheet')
+        script(src='https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.bundle.min.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js')
+        script(src='/javascripts/student_status.js')
+        script(src='https://code.jquery.com/jquery-3.4.1.min.js' integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=' crossorigin='anonymous')
+        // <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css')
+    body
+        nav(aria-label='breadcrumb')
+            ol.breadcrumb
+                li.breadcrumb-item
+                    a(href='student_home') Home
+                li.breadcrumb-item.active(aria-current='page') {person}'s Status
+        .container
+            .row.justify-content-evenly.component-background
+                h2 Skill Summary
+                .card(style='width: 14rem;')
+                    canvas#ontrack-chart.card-img-top
+                    .card-body
+                        h5.card-title Total Items Fulfilled: 34/87
+                        a.btn.btn-primary(href='#') My Skills
+                .card(style='width: 14rem;')
+                    canvas#expected-chart.card-img-top
+                    .card-body
+                        h5.card-title Expected Items Fulfilled: 30/30
+                .card(style='width: 14rem;')
+                    canvas#average-chart.card-img-top
+                    .card-body
+                        h5.card-title Compared to Class Average: 34/20
+            .py-4
+                .row.component-background
+                    h2 History
+                    .col
+                        h3 Assessment
+                        #assessment-history
+                    .col
+                        h3 Skills
+                        canvas#timeseries-chart

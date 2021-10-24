@@ -28,11 +28,13 @@ function display_all_skills(status_data) {
 function display_questions(questions) {
     let question_block = document.getElementById("question-summary")
     console.log(question_block)
-    let i, j, temporary, chunk = 6;
+    let i, j, temporary, chunk = Math.ceil(questions.length / 3);
     for (i = 0, j = questions.length; i < j; i += chunk) {
         temporary = questions.slice(i, i + chunk);
+        let container = document.createElement("div")
+        container.setAttribute("class", "col")
         let sublist = document.createElement("div")
-        sublist.setAttribute("class", "list-group list-group-horizontal")
+        sublist.setAttribute("class", "list-group col")
         for (const question of temporary) {
             let question_link = document.createElement("a")
             if (question.correctness === 1) {
@@ -45,7 +47,8 @@ function display_questions(questions) {
 
             question_link.setAttribute("href", "/questions/" + question.id)
             question_link.innerText = "Question " + question.number
-            sublist.appendChild(question_link)
+            container.appendChild(question_link)
+            sublist.appendChild(container)
         }
         question_block.appendChild(sublist)
     }
