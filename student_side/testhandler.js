@@ -10,7 +10,7 @@ f = probability. formerly system of linear eq word problems
 */
 questionDataList = [
 	{
-		"prompt":"Which choice is the graph of y=(4–x)(x+2)?",
+		"prompt":"Which choice is the graph of y=(4-x)(x+2)?",
 		"options":["<img src='q1graph1.png'>","<img src='q1graph2.png'>"],
 		"correct":1,
 		"type":"b"
@@ -28,13 +28,13 @@ questionDataList = [
 		"type":"a"
 	},
 	{
-		"prompt":"A company models its net income, in thousands of dollars, with the function f(x)=9x²–54x–144, where x is the number of units of its product sold. How many units of its product does the company need to sell in order for the net income to equal $0?",
+		"prompt":"A company models its net income, in thousands of dollars, with the function f(x)=9x²-54x-144, where x is the number of units of its product sold. How many units of its product does the company need to sell in order for the net income to equal $0?",
 		"options":["5","-2","8","10"],
 		"correct":2,
 		"type":"d"
 	},
 	{
-		"prompt":"The function f(x)=–0.25x+5 models the height of a candle x seconds after it is lit. What is the meaning of the y-intercept of the function? ",
+		"prompt":"The function f(x)=-0.25x+5 models the height of a candle x seconds after it is lit. What is the meaning of the y-intercept of the function? ",
 		"options":["The initial height of the candle","The final height of the candle","The rate at which the candle is burning","The time it will take for the candle to burn"],
 		"correct":0,
 		"type":"c"
@@ -58,7 +58,7 @@ questionDataList = [
 		"type":"c"
 	},
 	{
-		"prompt":"The function a(n) = 3n – 7 represents the value of the nth term in a sequence. What is the sum of the 1st and 5th terms of the sequence? ",
+		"prompt":"The function a(n) = 3n - 7 represents the value of the nth term in a sequence. What is the sum of the 1st and 5th terms of the sequence? ",
 		"options":["4","1","2","6"],
 		"correct":0,
 		"type":"a"
@@ -76,7 +76,7 @@ questionDataList = [
 		"type":"e"
 	},
 	{
-		"prompt":"Which equation represents the line that is perpendicular to the graph of 4x + 3y = 9 and passes through (–2, 3)?",
+		"prompt":"Which equation represents the line that is perpendicular to the graph of 4x + 3y = 9 and passes through (-2, 3)?",
 		"options":["3x-4y=-18","3x+4y=18","3x-4y=-6","3x+4y=6"],
 		"correct":0,
 		"type":"b"
