@@ -127,40 +127,12 @@ window.onload += function() {
     const teacherName = "Teacher"
     document.getElementById("title").innerHTML = teacherName + "'s Courses"
     document.getElementById("h1").innerHTML = teacherName + "'s Courses"
-
-    const c = [
-        {
-            "name" : "Math I - 2nd block",
-            "on_track" : 26,
-            "behind" : 8,
-            "ahead" : 5
-        },
-        {
-            "name" : "Math II - 4th block",
-            "on_track" : 18,
-            "behind" : 4,
-            "ahead" : 10
-        },
-        {
-            "name" : "Math II - 4th block",
-            "on_track" : 18,
-            "behind" : 4,
-            "ahead" : 10
-        },
-        {
-            "name" : "Math II - 4th block",
-            "on_track" : 18,
-            "behind" : 4,
-            "ahead" : 10
-        },
-        {
-            "name" : "Math II - 3rd block",
-            "on_track" : 15,
-            "behind" : 9,
-            "ahead" : 6
+    $.ajax({
+        url: "http://127.0.0.1/get_courses",
+        cache: false,
+        success: function(json_res){
+            createCourseComponents(json_res);
         }
-    ]
+      });
 
-    componentArea = document.getElementById("row align-items-start")
-    createCourseComponents(c)
-}()
+}
