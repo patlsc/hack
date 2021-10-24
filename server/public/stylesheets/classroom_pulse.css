@@ -1,13 +1,13 @@
 .background-behind {
-    background-color: #ffff10;
+    background-color: #FF2B24;
 }
 
 .background-ontrack {
-    background-color: #37bd30;
+    background-color: #06D6A0;
 }
 
 .background-ahead {
-    background-color: #37bd30;
+    background-color: #E449DE;
 }
 
 
@@ -19,6 +19,93 @@
     border-radius: 2px;
     border: 1px solid black;
 }
+
+.component-background {
+	background-color: rgb(245, 245, 245);
+    border-radius: 7px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 8px;
+	padding: 20px;
+}
+
+.breadcrumb {
+	background-color: #66ACFD;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 8px;
+	padding-left: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.breadcrumb >.active {
+	color: white;
+}
+
+.container-fluid {
+	padding-top: 20px;
+	padding-left: 40px;
+	padding-right: 40px;
+	padding-bottom: 20px;
+}
+
+.row {
+	gap: 20px;
+}
+
+.topic {
+	border-radius: 10px;
+	font-weight: 300;
+	font-size: 20px;
+	margin: 10px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 8px;
+	padding-right: 8px;
+	display: inline-block;
+}
+
+.severe {
+	background-color: #FF4B4B;
+}
+
+.moderate {
+	background-color: #FF8B8B;
+}
+
+.minimal {
+	background-color: #FFCECE;
+}
+
+h1 {
+	font-weight: 500;
+	font-size: 30px;
+	padding-bottom: 10px;
+}
+
+.course-planner-button {
+	width: fit-content;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+
+h4 {
+	text-align: center;
+	padding-top: 10px;
+}
+
+#student-dropdowns {
+	margin-top: 40px;
+}
+
+.icon-button {
+	font-size: 20px;
+	text-align: left;
+}
+
+.student-view {
+	margin-bottom: 20px;
+}
+
 
 /* .btn-label {
 	position: relative;

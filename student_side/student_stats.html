@@ -9,33 +9,70 @@
         <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
         <script src="student_status.js"></script>
         <script
-        src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-        crossorigin="anonymous"></script>
+                src="https://code.jquery.com/jquery-3.4.1.min.js"
+                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+                crossorigin="anonymous"></script>
         <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
         <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+                rel="stylesheet"
+                href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
         />
     </head>
+
+    <style>
+        #topdiv {
+            padding: 25px;
+            color: white;
+            background-color: #252525;
+        }
+    </style>
+
     <body>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <!-- OnTrack Chart Area -->
-                    <canvas id="ontrack-chart"></canvas>
-                    <div id="assessment-history">
 
-                    </div>
-                    <canvas id="timeseries-chart"></canvas>
-                </div>
-                <div id="expected-skills" class="col">
+    <div id="topdiv">
+        <h2>{student_name}'s Status</h2>
+    </div>
 
+    <div class="container py-4">
+
+        <div class="row justify-content-evenly">
+            <h2>Skill Summary</h2>
+            <div class="card" style="width: 14rem;">
+                <canvas class="card-img-top" id="ontrack-chart"></canvas>
+                <div class="card-body">
+                    <h5 class="card-title">Total Items Fulfilled: 34/87</h5>
+                    <a class="btn btn-primary" href="#">My Skills</a>
                 </div>
-                <div id="average-skills" class="col">
+            </div>
+
+            <div class="card" style="width: 14rem;">
+                <canvas class="card-img-top" id="expected-chart"></canvas>
+                <div class="card-body">
+                    <h5 class="card-title">Expected Items Fulfilled: 30/30</h5>
+                </div>
+            </div>
+
+            <div class="card" style="width: 14rem;">
+                <canvas class="card-img-top" id="average-chart"></canvas>
+                <div class="card-body">
+                    <h5 class="card-title">Compared to Class Average: 34/20</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="row py-4">
+            <h2>History</h2>
+            <div class="col">
+                <h3>Assessment</h3>
+                <div id="assessment-history">
 
                 </div>
             </div>
+            <div class="col">
+                <h3>Skills</h3>
+                <canvas id="timeseries-chart"></canvas>
+            </div>
+        </div>
         </div>
     </body>
 </html>

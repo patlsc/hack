@@ -108,4 +108,8 @@ router.get("/course_list", (req, res) => {
   res.render("course_list")
 })
 
+router.get("/student_stats", (req, res) => {
+  res.render("student_status")
+})
+
 module.exports = router;
