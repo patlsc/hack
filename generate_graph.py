@@ -47,4 +47,4 @@ graph = build_graph(create_subset(main('a', 'b', 'c', 'd', 'e', 'f')))
 # test_graph(graph)
 
 print(graph)
-json.dump(graph, open("/home/byrdofafeather/ByrdOfAFeather/hack/ls.json", 'w'))
+json.dump(graph, open("./ls.json", 'w'))
