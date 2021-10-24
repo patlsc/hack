@@ -119,28 +119,25 @@ questionDataList = [
 	},
 ]
 currentQuestionData = questionDataList[0];
-currentQuestionData["qnumber"] = 1;
-currentQuestionData["qmax"] = String(questionDataList.length);
 currentQuestionNumber = 0;
 
-answerHistory = [];
+answerHistory = []
 
+MAX_QUESTIONS = 15
 QUESTIONTIMEOUT = 1500;
 
 //updates currentQuestionData and clears screen
 function startNewQuestion() {
 	currentQuestionNumber += 1;
 	currentQuestionData = questionDataList[currentQuestionNumber];
-	currentQuestionData["qnumber"] = String(currentQuestionNumber+1);
-	currentQuestionData["qmax"] = String(questionDataList.length);
 	clearQuestionArea();
-	addQuestion(currentQuestionData);
+	addQuestion();
 }
 
 testarea = document.getElementById("test-area");
-function addQuestion(questionData) {
+function addQuestion() {
 	var qnumbertitle = document.createElement("H3");
-	qnumbertitle.innerHTML = "Question " + String(questionData["qnumber"]) + "/" + String(questionData["qmax"]);
+	qnumbertitle.innerHTML = "Question " + String(currentQuestionNumber+1) + "/" + String(MAX_QUESTIONS);
 	testarea.appendChild(qnumbertitle);
 
 	var qprogressdiv = document.createElement("DIV");
@@ -149,7 +146,7 @@ function addQuestion(questionData) {
 	var qprogressin = document.createElement("DIV");
 	qprogressin.setAttribute("class","progress-bar");
 	qprogressin.setAttribute("role","progressbar");
-	var progressamt = String(parseInt(Math.round(100*parseFloat(questionData["qnumber"])/parseFloat(questionData["qmax"]))));
+	var progressamt = String(parseInt(Math.round(100*parseFloat(currentQuestionNumber+1)/parseFloat(MAX_QUESTIONS))));
 	qprogressin.setAttribute("style","width:"+progressamt+"%");
 	qprogressin.setAttribute("aria-valuemin","0");
 	qprogressin.setAttribute("aria-valuemax","100");
@@ -158,8 +155,8 @@ function addQuestion(questionData) {
 
 	var qprompt = document.createElement("P");
 	testarea.appendChild(qprompt);
-	qprompt.innerHTML = questionData["prompt"];
-	for (var k = 0; k < questionData["options"].length; k++) {
+	qprompt.innerHTML = currentQuestionData["prompt"];
+	for (var k = 0; k < currentQuestionData["options"].length; k++) {
 		var qoptdiv = document.createElement("DIV");
 		var qopt = document.createElement("INPUT");
 		qopt.setAttribute("type","radio");
@@ -169,7 +166,7 @@ function addQuestion(questionData) {
 		qopt.setAttribute("value","qopt"+String(k));
 		qtext = document.createElement("LABEL");
 		qtext.setAttribute("for","qopt"+String(k));
-		qtext.innerHTML = questionData["options"][k];
+		qtext.innerHTML = currentQuestionData["options"][k];
 		qoptdiv.appendChild(qopt);
 		qoptdiv.appendChild(qtext);
 		testarea.appendChild(qoptdiv);
