@@ -113,7 +113,8 @@ function addQuestion(questionData) {
 	var qprogressin = document.createElement("DIV");
 	qprogressin.setAttribute("class","progress-bar");
 	qprogressin.setAttribute("role","progressbar");
-	qprogressin.setAttribute("style","width:"+String(parseInt(Math.round(100*questionData["qnumber"]/questionData["qmax"])))+"%");
+	var progressamt = String(parseInt(Math.round(100*parseFloat(questionData["qnumber"])/parseFloat(questionData["qmax"]))));
+	qprogressin.setAttribute("style","width:"+progressamt+"%");
 	qprogressin.setAttribute("aria-valuemin","0");
 	qprogressin.setAttribute("aria-valuemax","100");
 	qprogressdiv.appendChild(qprogressin);
