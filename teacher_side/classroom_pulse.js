@@ -62,7 +62,7 @@ function createOnTrackModule() {
         }
     }
 
-    title.innerHTML = String(STUDENTS.length - noStudentsOnTrack) + "/" + String(STUDENTS.length) + " students on track"
+    title.innerHTML = String(noStudentsOnTrack) + "/" + String(STUDENTS.length) + " students on track"
 
     createOnTrackChart()
     createTimeSeriesChart()
@@ -101,7 +101,6 @@ function createTopicsStruggedWithComponent() {
                 break
         }
 
-        console.log("added")
         component.appendChild(topicDiv)
     }
 
@@ -204,7 +203,8 @@ function genericStudentView(id, dropdownItems, background) {
                 $(`#student-view-${id}-icon`).removeClass("bi-arrow-up").addClass("bi-arrow-down")
                 currentlyDisplaying = false; 
             } else {
-                $(`#student-view-${id}-students`).show(400);
+                $(`#student-view-${id}-students`).show(200);
+                console.log("showing")
                 $(`#student-view-${id}-icon`).removeClass("bi-arrow-down").addClass("bi-arrow-up")
                 currentlyDisplaying = true;
             }
