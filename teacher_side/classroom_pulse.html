@@ -27,22 +27,34 @@
             </ol>
         </nav>
 
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col">
-                    <!-- OnTrack Chart Area -->
-                    <canvas id="ontrack-chart"></canvas>
-                </div>
-                <div id="student-dropdowns" class="col">
-                    <!-- Student Area-->
-                </div>
-            </div>
-            <div class="row  mt-5">
-                <div class="col">
-                    <canvas id="timeseries-chart"></canvas>
-                </div>
-                <div id="difficult-items" class="col">
+                    <div class="track-component component-background">
+                        <!-- On track module (donut chart and line graph) -->
+                        <h1 id="track-title"></h1>
 
+                        <canvas id="ontrack-chart"></canvas>
+
+                        <canvas id="timeseries-chart"></canvas>
+
+                        <h4>Skills learned per day</h3>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="row">
+                        <div class="component-background" id="struggle-component">
+                            <!-- Topics most struggled with -->
+                            <h1>Topics most struggled with</h1>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div id="student-dropdowns" class="col">
+                            <!-- Student status area -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -52,6 +52,72 @@ function getSkillLearningHistory() {
     return data;
 }
 
+function createOnTrackModule() {
+    const title = document.getElementById("track-title")
+
+    let noStudentsOnTrack = 0;
+    for (let i = 0; i<STUDENTS.length; i++) {
+        if (STUDENTS[i].status === STATUS["OnTrack"] || STUDENTS[i].status === STATUS["Ahead"]) {
+            noStudentsOnTrack += 1;
+        }
+    }
+
+    title.innerHTML = String(STUDENTS.length - noStudentsOnTrack) + "/" + String(STUDENTS.length) + " students on track"
+
+    createOnTrackChart()
+    createTimeSeriesChart()
+}
+
+function createTopicsStruggedWithComponent() {
+    // A topic can be struggled with on three levels of severity, with 0 being the least severe and 2 being the most severe.
+    const STRUGGLE_TOPICS = [
+        ["2.A.1 Solving systems of linear equations", 2],
+        ["2.A.2 Timesing", 2],
+        ["2.B.5 Eating", 1],
+        ["2.C.3 Doing something else", 0]
+    ]
+
+    const component = document.getElementById("struggle-component")
+    
+    for (let i = 0; i < STRUGGLE_TOPICS.length; i++) {
+        const topic = STRUGGLE_TOPICS[i][0]
+        const severity = STRUGGLE_TOPICS[i][1]
+
+        const topicDiv = document.createElement("DIV")
+
+        topicDiv.classList.add("col")
+        topicDiv.classList.add("topic")
+        topicDiv.innerHTML = topic
+
+        switch (severity) {
+            case 0:
+                topicDiv.classList.add("minimal")
+                break
+            case 1:
+                topicDiv.classList.add("moderate")
+                break
+            case 2:
+                topicDiv.classList.add("severe")
+                break
+        }
+
+        console.log("added")
+        component.appendChild(topicDiv)
+    }
+
+    const row = document.createElement("DIV")
+    row.classList.add("row")
+    const plannerButton = document.createElement("BUTTON")
+    plannerButton.classList.add("btn")
+    plannerButton.classList.add("btn-primary")
+    plannerButton.classList.add("course-planner-button")
+    plannerButton.innerHTML = "Open course planner"
+    plannerButton.setAttribute("type", "button")
+    row.appendChild(plannerButton)
+
+    component.appendChild(row)
+}
+
 function createOnTrackChart() {
     let noStudentsOnTrack = 0;
     for (let i = 0; i<STUDENTS.length; i++) {
@@ -73,19 +139,7 @@ function createOnTrackChart() {
                     RED_COLOR,
                 ]
             }]
-        },
-        options: {
-            elements: {
-              center: {
-                text: `${noStudentsOnTrack}/${noStudents} On Track`,
-                color: '#000000', // Default is #000000
-                fontStyle: 'Arial', // Default is Arial
-                sidePadding: 20, // Default is 20 (as a percentage)
-                minFontSize: 25, // Default is 20 (in px), set to false and text will not wrap.
-                lineHeight: 25 // Default is 25 (in px), used for when text wraps
-              }
-            }
-          }
+        }   
     });
 }
 
@@ -96,18 +150,18 @@ function createTimeSeriesChart() {
     const labels = skillsLearned.map((i) => i.date);
     const data = skillsLearned.map((i) => i.data); 
     const chart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels,
-        datasets: [{
-            label: '# Items Learned',
-            data: data,
-            borderWidth: 1,
-            backgroundColor: GRAY_BG,
-            // pointBackgroundColor: "",
-        }]
-    },
-    options: {}
+        type: 'line',
+        data: {
+            labels,
+            datasets: [{
+                label: '# of items learned',
+                data: data,
+                borderWidth: 1,
+                backgroundColor: GRAY_BG,
+                // pointBackgroundColor: "",
+            }]
+        },
+        options: {}
     });
 }
 
@@ -116,7 +170,7 @@ function genericDiv(classes, id) {
 }
 
 function iconButton(id, text, icon, extraClasses) {
-    let button = $("<button>", {class: `btn ${extraClasses}`, id:`${id}-button`}).text(text);
+    let button = $("<button>", {class: `btn ${extraClasses} icon-button`, id:`${id}-button`}).text(text);
     return button.append(
             $("<i>", {class:icon, id:`${id}-icon`})
     );
@@ -206,10 +260,11 @@ function createDifficultItems() {
 
 window.addEventListener("load", ()=>{genericDiv
     STUDENTS = getStudents(); // Singleton moment, could be changed to server call 
-    createOnTrackChart();
-    createTimeSeriesChart();
+
+    createOnTrackModule();
+    createTopicsStruggedWithComponent();
+
     createStudentDropDowns();
-    createDifficultItems();
 });
 
 
