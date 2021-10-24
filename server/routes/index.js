@@ -96,6 +96,10 @@ router.get("/status/:testid", (req,res)=>{
   res.render("status");
 })
 
+router.get("/student_home", (req, res) => {
+  res.render("student")
+})
+
 router.get("/classroom_pulse", (req, res) => {
   res.render("classroom_pulse")
 })
